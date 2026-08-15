@@ -1,25 +1,21 @@
-# 🎈 Blank app template
+# Bitly
 
-A simple Streamlit app template for you to modify!
+Bitly is a pastel, Tamagotchi-inspired diabetes care companion for kids, teens,
+and families. This prototype is a dependency-free JavaScript + HTML + CSS app.
 
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://blank-app-template.streamlit.app/)
+## Run locally
 
-### How to run it on your own machine
-
-Prerequisite: install `uv` if you don't already have it.
-
-```
-$ curl -LsSf https://astral.sh/uv/install.sh | sh
+```bash
+python -m http.server 5000
 ```
 
-1. Sync the dependencies
+Then open `http://localhost:5000`. Accounts, settings, and demo interactions
+are stored in the browser's localStorage because this is a front-end prototype.
 
-   ```
-   $ uv sync
-   ```
+## Included
 
-2. Run the app
-
-   ```
-   $ uv run streamlit run streamlit_app.py
-   ```
+- Responsive welcome, about, about-me, contact, signup, login, dashboard, and settings views
+- LocalStorage signup/login flow
+- Weekly and monthly glucose visualizations
+- Interactive Pixel Buddy moods and parent reminder demo
+- Theme and Pixel Buddy customization settings

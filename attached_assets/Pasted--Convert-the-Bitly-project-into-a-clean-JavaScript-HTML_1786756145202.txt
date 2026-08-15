@@ -1,0 +1,164 @@
+**“Convert the Bitly project into a clean JavaScript + HTML + CSS web app with a fully optimized, colorful, kiddish, pastel UI.
+Separate ALL styling into a single CSS file.
+Do NOT embed CSS inside JavaScript or HTML.
+Use pastel bubble‑yellow, bubble‑pink, soft blue, mint, and lavender as theme colors.
+Use rounded corners, soft shadows, cute icons, and Tamagotchi‑style UI elements.
+Make the UI professional, clean, and friendly for kids and teens.
+
+Create the following pages:
+
+Welcome Page
+
+Pastel gradient background
+
+Rounded cards
+
+“Welcome to Bitly” title
+
+Cute pixelated logo
+
+A short description of Bitly
+
+Button: “Learn More”
+
+About Bitly Page
+
+Scrollable pastel section
+
+“Bitly was created to help kids, teens, and families manage diabetes in a friendly, non‑medical way.”
+
+Include a section explaining the Tamagotchi companion device
+
+Include AI‑generated demo images of the Tamagotchi character
+
+About Me Page
+
+Pastel card with rounded corners
+
+Text: “My name is Chanelle. I created Bitly to help people like my friend Johanna and her little sister Eunice, who struggle with diabetes.”
+
+Include a pixel heart or pixel drop icon
+
+Soft bubble‑yellow/pink background
+
+Contact Us Page
+
+Rounded pastel form
+
+Fields: Name, Email, Message
+
+Bubble‑pink submit button
+
+Create Account Page
+
+Email, Password, Account Type (Parent, Teen, Kid)
+
+Rounded pastel form
+
+Save signup info in localStorage so users don’t need to sign up again
+
+After signup → redirect to Login
+
+Login Page
+
+Email + Password
+
+Rounded pastel login card
+
+After login → redirect to Dashboard
+
+Dashboard Page
+
+Greeting: “Hello, [Name]!”
+
+Weekly glucose graph (realistic zig‑zag model data)
+
+Monthly glucose graph
+
+Rounded pastel graph containers
+
+Pixel Buddy section
+
+Parent-only section: send reminders to kid’s Bitly device
+
+Include Tamagotchi-style animations (hungry, tired, happy, vibrating, needing food)
+
+Pixel Buddy System
+
+Create a modular JavaScript component with sprite layers:
+
+Body
+
+Skin tone
+
+Hair
+
+Clothes
+
+Accessories
+
+Facial expressions
+
+Mood overlays
+
+Animation frames
+
+Idle animations: blink, bounce, sway
+
+Reactive animations: hungry, tired, energetic, vibrating
+
+Display the Pixel Buddy inside a rounded pastel card
+
+Include AI-generated demo images of the Tamagotchi character
+
+Settings Page
+
+Change theme
+
+Change email
+
+Change password
+
+Customize Pixel Buddy
+
+Parent linking
+
+Notifications
+
+Rounded pastel UI
+
+Logo
+
+Generate a pixelated logo for Bitly
+
+Bubble‑yellow + bubble‑pink palette
+
+Pixel heart or pixel glucose drop
+
+Rounded edges
+
+Cute but professional
+
+Project Structure:
+/bitly
+index.html
+about.html
+aboutme.html
+contact.html
+signup.html
+login.html
+dashboard.html
+settings.html
+/js
+main.js
+auth.js
+pixelBuddy.js
+graphs.js
+/css
+style.css
+/assets
+/sprites
+/icons
+/logo
+
+Make the entire app pastel, rounded, kiddish, Tamagotchi-inspired, and optimized for a clean, modern UI.

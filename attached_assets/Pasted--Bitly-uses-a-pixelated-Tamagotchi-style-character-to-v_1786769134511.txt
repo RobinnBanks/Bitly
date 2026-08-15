@@ -1,0 +1,215 @@
+“Bitly uses a pixelated Tamagotchi‑style character to visualize daily habits in a friendly, non‑clinical way.”
+
+Updated behavior: login, logout, and navigation
+Goal: When someone is logged in, the app behaves like a real product—no “About Us” clutter, clear session behavior, and Gmail remembered.
+
+Remember Gmail:  
+Label: Store email
+Save the user’s email (e.g., Gmail) after login so the next time they visit, the email field can be pre‑filled or remembered in a “recent accounts” list.
+
+Login page behavior (logged out):  
+Label: Public view
+Show:
+
+Logo + tagline
+
+“Log in” and “Sign up” buttons
+
+“About Bitly” section
+
+Simple explainer of the Tamagotchi buddy and glucose tracking
+
+Option to choose account type: Parent / Teen / Kid (with “get your parent to make it” message for kids)
+
+Login page behavior (logged in):  
+Label: Authenticated view
+Once logged in:
+
+Hide “About Us”, “Log in”, and “Sign up” from the top navigation
+
+Replace them with: “Home”, “Settings”, “Notifications”, “Log out”
+
+Show a small banner: “Logged in as Parent” or “Logged in as Teen”
+
+Logout behavior:  
+Label: Session end
+When the user logs out:
+
+Clear session
+
+Return to the public home page with “About Bitly”, “Log in”, and “Sign up” visible again
+
+Do not delete their account—just end the session
+
+Home page (logged‑in) — interactive parent/teen mode
+Goal: Make the home page feel alive and useful the second they log in.
+
+For logged‑in users, the Home page should show:
+
+Glucose monitor status card:  
+Label: Device status
+
+Large, clear indicator: “Glucose monitor: Online” or “Offline”
+
+For the demo, it should always show “Online” with a green dot
+
+If online: show last sync time and a tiny icon of the Tamagotchi buddy smiling
+
+If offline (future): show a gentle message like “We’re not seeing your monitor right now—check your connection.”
+
+Tamagotchi buddy panel:  
+Label: Buddy state
+
+Show the pixelated character in its current mood (happy, hungry, tired, etc.)
+
+Short text like: “Your buddy looks a little hungry. Have you eaten recently?”
+
+Button: “Send reminder” (for parents) or “Set my own reminder” (for teens)
+
+Daily goals card:  
+Label: Goals
+
+If Parent: “Set today’s goals for your child”
+
+Example fields:
+
+“Meals today” (e.g., 3)
+
+“Water glasses” (e.g., 5)
+
+“Check glucose” (e.g., 4 times)
+
+If Teen: “Set your goals for today”
+
+Same fields, but framed as self‑management
+
+Show progress bars that fill as logs come in
+
+Quick actions row:  
+Label: Shortcuts
+
+Buttons:
+
+“Go to Settings”
+
+“View Today’s Chart”
+
+“Send a reminder”
+
+“Check Tamagotchi buddy”
+
+Notifications & Tamagotchi buddy interactions
+Goal: Make the app feel like it’s talking through the buddy, not just sending boring alerts.
+
+Parent notifications to kids:  
+Label: Parent → kid
+From the parent dashboard, they can:
+
+Tap “Send reminder” when the buddy looks hungry or tired
+
+Choose from preset messages like:
+
+“Your Bitly buddy looks hungry—time for a snack?”
+
+“Your buddy is low on energy—maybe check your glucose?”
+
+“Water time! Your buddy wants a drink.”
+
+These show up on the kid/teen’s phone as friendly notifications with the buddy’s face.
+
+Automatic buddy‑based notifications (demo logic):  
+Label: Auto prompts
+For the demo, you can define simple rules like:
+
+If no meal logged in 4 hours → send: “Your buddy hasn’t eaten in a while. Want to log a snack?”
+
+If no water logged in 3 hours → send: “Your buddy is thirsty. Log some water?”
+
+If glucose monitor is online but no reading logged → send: “Your buddy wants to check in. Log your latest reading?”
+
+Notification center:  
+Label: Inbox
+Inside the app, have a “Notifications” tab where users can:
+
+See past reminders
+
+Mark them as “Done”
+
+See how many times they responded to their buddy
+
+Settings, accessibility, and themes
+Goal: Make Settings feel like a real app control center, with accessibility front and center.
+
+Settings access:  
+Label: Entry points
+
+From the login page (logged out): show a small “Settings” icon for basic app settings (theme, language).
+
+From the logged‑in view: “Settings” in the top navigation and in the quick actions row.
+
+Settings content:  
+Label: Core options
+
+Change email
+
+Change password
+
+Enable/disable 2‑step verification
+
+Theme selection:
+
+Bubble Yellow (default)
+
+Bubble Pink
+
+Bubble Mix
+
+Dark mode
+
+Blue mode
+
+Tamagotchi buddy customization (hair, skin tone, clothes, accessories)
+
+Accessibility:
+
+High contrast mode
+
+Larger text
+
+Dyslexia‑friendly font
+
+Reduce animations (for motion sensitivity)
+
+Notification preferences:
+
+Turn buddy notifications on/off
+
+Choose tone: “Gentle”, “Playful”, “Minimal”
+
+Log out button
+
+Accessibility behavior:  
+Label: Visual safety
+
+When high contrast mode is on, increase contrast between text and background.
+
+When “reduce animations” is on, use fewer bounces and sparkles—keep the buddy calm.
+
+Make all buttons large and easy to tap.
+
+Buddies & images “online”
+Goal: Make sure everything visual feels “live” and not placeholder.
+
+Buddy status:  
+Label: Online presence
+
+Show a small “Online” indicator next to the buddy when the app is connected and synced.
+
+If assets fail to load (future case), show a fallback buddy with a message: “We’re reloading your buddy—please wait.”
+
+Image loading:  
+Label: Asset handling
+
+All character images, icons, and charts should appear instantly on the home page after login.
+
+Use soft loading animations (like a pulsing pastel dot) instead of harsh spinners.

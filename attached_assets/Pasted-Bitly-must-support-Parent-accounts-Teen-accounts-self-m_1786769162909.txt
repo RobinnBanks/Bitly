@@ -1,0 +1,90 @@
+Bitly must support:
+- Parent accounts
+- Teen accounts (self-managed)
+- Kid accounts (created by parents)
+
+LOGIN & LOGOUT BEHAVIOR
+- When logged out, show:
+  - Logo, tagline
+  - "Log in" and "Sign up" buttons
+  - "About Bitly" section
+  - Account type choices: Parent / Teen / Kid (with a message: "If you are a kid, please get your parent to create your account.")
+- When logged in:
+  - Hide "About Us", "Log in", and "Sign up" from navigation.
+  - Show "Home", "Settings", "Notifications", "Log out".
+  - Display "Logged in as Parent" or "Logged in as Teen".
+  - Remember the user's email (e.g., Gmail) for future logins.
+- When logging out:
+  - End the session.
+  - Return to the public home page with "About Bitly", "Log in", and "Sign up" visible again.
+
+HOME PAGE (LOGGED-IN)
+- Show a "Glucose monitor status" card:
+  - For the demo, always show "Glucose monitor: Online" with a green dot.
+  - Show last sync time and a small smiling buddy icon.
+- Show the Tamagotchi buddy panel:
+  - Pixelated character with current mood (happy, hungry, tired, etc.).
+  - Text like: "Your buddy looks a little hungry. Have you eaten?"
+  - Buttons:
+    - For parents: "Send reminder".
+    - For teens: "Set my own reminder".
+- Show a "Daily goals" card:
+  - For parents: "Set today’s goals for your child" (meals, water, glucose checks).
+  - For teens: "Set your goals for today" (same fields, self-managed).
+  - Progress bars that fill as logs are completed.
+- Show quick actions:
+  - "Go to Settings"
+  - "View Today’s Chart"
+  - "Send a reminder"
+  - "Check Tamagotchi buddy"
+
+NOTIFICATIONS & BUDDY INTERACTIONS
+- Parents can send reminders to their kids:
+  - Example messages:
+    - "Your Bitly buddy looks hungry—time for a snack?"
+    - "Your buddy is low on energy—maybe check your glucose?"
+    - "Water time! Your buddy wants a drink."
+- Automatic buddy-based notifications (demo logic):
+  - If no meal logged in 4 hours → "Your buddy hasn’t eaten in a while. Want to log a snack?"
+  - If no water logged in 3 hours → "Your buddy is thirsty. Log some water?"
+  - If glucose monitor is online but no reading logged → "Your buddy wants to check in. Log your latest reading?"
+- Include a "Notifications" tab where users can see past reminders and mark them as done.
+
+SETTINGS, ACCESSIBILITY, AND THEMES
+- Settings must include:
+  - Change email
+  - Change password
+  - Enable/disable 2-step verification
+  - Theme selection:
+    - Bubble Yellow (default)
+    - Bubble Pink
+    - Bubble Mix (yellow + pink)
+    - Dark mode
+    - Blue mode
+  - Tamagotchi buddy customization (hair, skin tone, clothes, accessories).
+  - Accessibility options:
+    - High contrast mode
+    - Larger text
+    - Dyslexia-friendly font
+    - Reduce animations.
+  - Notification preferences:
+    - Turn buddy notifications on/off.
+    - Choose tone: "Gentle", "Playful", "Minimal".
+  - Log out button.
+- Accessibility behavior:
+  - High contrast mode increases contrast.
+  - Reduce animations mode minimizes motion and sparkles.
+  - Buttons are large and easy to tap.
+
+BUDDIES & IMAGES ONLINE
+- Show an "Online" indicator next to the buddy when the app is connected.
+- If assets fail to load, show a fallback buddy with a message like:
+  - "We’re reloading your buddy—please wait."
+- All character images, icons, and charts should load quickly with soft, pastel loading animations.
+
+Design language:
+- Soft pastels (bubble yellow, pink, mix, dark, blue).
+- Rounded corners, bubbly shapes.
+- Pixelated Tamagotchi-style buddy.
+- Friendly, non-clinical tone.
+- Fully interactive login, home, settings, notifications, and goal-setting flows for parents and teens.

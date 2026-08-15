@@ -1,0 +1,196 @@
+The logged‑in home page should feel like a real, functioning app. It includes:
+
+1. Bitly Buddy Status Panel (Main Focus)
+The buddy is front and center. It reacts to the user’s day using safe, hypothetical diabetes patterns.
+
+The buddy shows:
+
+Energy level
+
+Mood
+
+Hunger level
+
+Hydration level
+
+Activity level
+
+Glucose trend (friendly, non‑medical)
+
+Examples of buddy reactions:
+
+Stable glucose:  
+The buddy looks energetic, bouncy, sparkly.
+
+Glucose trending high:  
+The buddy looks warm, slow, and refuses food:
+“Your Bitly doesn’t need sugar right now.”
+
+Glucose trending low:  
+The buddy looks tired or droopy:
+“Your Bitly might need a snack soon.”
+
+After eating a meal:  
+The buddy reacts differently depending on the food type:
+
+Salad → gentle energy boost
+
+Granola bar → medium boost
+
+Egg → stable boost
+
+Sugary snack → quick spike, then slow down
+The buddy says things like:
+“That helped! I feel steadier now.”  
+or
+“That was a lot of sugar. I’m full.”
+
+If the user tries to feed the buddy when glucose is high:  
+The buddy refuses:
+“I can’t eat right now. Let’s wait a bit.”
+
+If the user hasn’t eaten in hours:  
+The buddy rubs its belly:
+“I’m getting hungry. Maybe a snack?”
+
+If the user logs activity (games, walking, chores):  
+The buddy reacts:
+“Fun! That helped my energy.”  
+or
+“Games were fun! Want to log more activity?”
+
+This makes the buddy feel alive and connected to the user’s real patterns.
+
+🌟 2. Glucose Monitor Status (Demo Mode)
+A card shows:
+
+Glucose Monitor: Online
+
+Green dot indicator
+
+Last sync time
+
+Buddy icon smiling
+
+Parents see:
+
+“Monitor online — your child’s buddy is active.”
+
+Teens see:
+
+“Monitor online — your buddy is synced.”
+
+🎯 3. Daily Goals (Parent or Teen Mode)
+Teen Mode
+Teens can set:
+
+Meal goals
+
+Water goals
+
+Activity goals
+
+“Check glucose” goals
+
+Progress bars fill as they log things.
+
+Parent Mode
+Parents can set goals for their child:
+
+“Eat 3 meals today”
+
+“Drink 5 glasses of water”
+
+“Check glucose 4 times”
+
+Parents can also send reminders:
+
+“Your buddy looks hungry — time for a snack?”
+
+“Your buddy wants water.”
+
+“Your buddy wants to check in.”
+
+🔔 4. Buddy‑Based Notifications (Interactive Demo)
+Notifications come from the buddy, not the app.
+
+Examples:
+
+“I’m hungry — want to log a snack?”
+
+“I’m thirsty — water time?”
+
+“I’m feeling low energy — maybe check your glucose?”
+
+“I’m full — no more sugar right now.”
+
+Parents can send notifications too:
+
+“Your buddy needs a snack.”
+
+“Your buddy wants to check in.”
+
+⚙️ 5. Settings (Fully Interactive)
+From the logged‑in view, users can:
+
+Change theme (Bubble Yellow, Bubble Pink, Bubble Mix, Dark, Blue)
+
+Customize buddy (hair, skin tone, clothes, accessories)
+
+Change email
+
+Change password
+
+Enable 2‑step verification
+
+Turn buddy notifications on/off
+
+Adjust accessibility:
+
+High contrast
+
+Larger text
+
+Dyslexia‑friendly font
+
+Reduce animations
+
+Log out
+
+When logged out, the app returns to the public home page.
+
+🎮 6. Activity Log (New Section You Requested)
+This appears only when logged in.
+
+Users can log:
+
+Games played
+
+Walking
+
+Sports
+
+Chores
+
+School activities
+
+The buddy reacts:
+
+“Games were fun!”
+
+“Walking helped my energy.”
+
+“I’m tired after all that activity.”
+
+This becomes part of the buddy’s daily mood.
+
+🖼️ 7. Buddy & Image Loading (Online Assets)
+All buddy animations, icons, and images should load instantly.
+
+If something fails:
+
+Show a fallback buddy
+
+Message: “Reloading your buddy…”
+
+Buddy shows an “Online” indicator when synced.
