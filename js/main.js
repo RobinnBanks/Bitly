@@ -7,6 +7,9 @@ const $ = (selector, parent = document) => parent.querySelector(selector);
 const $$ = (selector, parent = document) => [...parent.querySelectorAll(selector)];
 
 const defaultState = () => ({
+  kidName: "Eunice",
+  buddyName: "Mochi",
+  historyRange: "today",
   goals: { meals: 3, water: 5, glucose: 4, activity: 30 },
   logs: [
     { type: "meal", detail: "Breakfast", at: "Today · 08:30" },
@@ -141,6 +144,14 @@ function hydrateApp() {
   $$("[data-account-label]").forEach((el) => { el.textContent = label; });
   $$("[data-parent-space]").forEach((el) => { el.classList.toggle("is-hidden", user?.type !== "parent"); });
   $$("[data-teen-space]").forEach((el) => { el.classList.toggle("is-hidden", user?.type === "parent"); });
+  const kidName = state.kidName || getDisplayName(user);
+  const buddyName = state.buddyName || "Mochi";
+  $("[data-profile-field='kidName']").value = kidName;
+  $("[data-profile-field='buddyName']").value = buddyName;
+  $("[data-kid-label]").textContent = user?.type === "parent" ? "Kid’s name" : "Your name";
+  $("[data-circle-copy]").textContent = user?.type === "parent" ? `${kidName} + ${buddyName}` : `${buddyName} is your buddy`;
+  $("[data-circle-subcopy]").textContent = user?.type === "parent" ? "Keep the care circle warm, personal, and easy to check in on." : "Give your buddy a name that feels like yours.";
+  $$("[data-buddy-name]").forEach((el) => { el.textContent = buddyName; });
   $("[data-goal-heading]").textContent = user?.type === "parent" ? "Set goals for your child" : "Set goals for yourself";
   $("[data-monitor-copy]").textContent = user?.type === "parent" ? "Monitor online — your child’s buddy is active." : "Monitor online — your buddy is synced.";
   $("#glucose-trend").value = state.trend;
@@ -177,6 +188,7 @@ function renderState(state) {
   renderBuddyMood(state.mood || moodForTrend(state.trend), false);
   renderActivity(state);
   renderNotifications(state);
+  renderHistory(state);
 }
 
 function moodForTrend(trend) { return trend === "low" ? "tired" : trend === "high" ? "high" : "happy"; }
@@ -212,6 +224,28 @@ function renderNotifications(state) {
   const openCount = notifications.filter((item) => !item.done).length;
   $$("[data-notification-count]").forEach((el) => { el.textContent = openCount; el.classList.toggle("is-hidden", openCount === 0); });
   $$("[data-response-count]").forEach((el) => { el.textContent = state.responses || 0; });
+}
+
+function renderHistory(state) {
+  const chart = $("[data-history-chart]");
+  if (!chart) return;
+  const histories = {
+    today: { labels: ["8a", "10a", "12p", "2p", "4p", "6p", "Now"], values: [106, 122, 114, 137, 119, 128, 111] },
+    days: { labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Now"], values: [98, 126, 115, 141, 120, 132, 110] },
+    weeks: { labels: ["W1", "W2", "W3", "W4", "W5", "W6", "Now"], values: [105, 118, 129, 112, 138, 121, 116] },
+    months: { labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Now"], values: [93, 108, 116, 124, 119, 131, 112] },
+  };
+  const range = histories[state.historyRange] ? state.historyRange : "today";
+  const history = histories[range];
+  chart.innerHTML = history.values.map((value, index) => {
+    const height = Math.max(18, Math.min(92, ((value - 70) / 90) * 100));
+    const status = value > 135 ? "warm" : value < 80 ? "low" : "steady";
+    return `<div class="history-bar-wrap"><span class="history-tooltip">${history.labels[index]} · ${value} mg/dL</span><b class="history-bar ${status}" style="--bar-height:${height}%"></b><small>${history.labels[index]}</small></div>`;
+  }).join("");
+  $$("[data-history-range]").forEach((button) => button.classList.toggle("active", button.dataset.historyRange === range));
+  const average = Math.round(history.values.reduce((sum, value) => sum + value, 0) / history.values.length);
+  $("[data-history-average]").innerHTML = `${average} mg/dL avg <span>↗</span>`;
+  $("[data-history-summary]").textContent = `${history.values.filter((value) => value >= 80 && value <= 140).length}/${history.values.length} in range`;
 }
 
 function nowLabel() {
@@ -347,11 +381,36 @@ function demoLogin(type) {
 function sendReminder(self = false) {
   const state = getState();
   const messages = self ? ["I’m hungry — want to log a snack?", "I’m thirsty — water time?", "I’m feeling low energy — maybe check your glucose?"] : ["Your Bitly buddy looks hungry — time for a snack?", "Your buddy is low on energy — maybe check your glucose?", "Water time! Your buddy wants a drink."];
-  const message = messages[state.notifications.length % messages.length];
+  const message = self ? messages[state.notifications.length % messages.length] : $("[data-reminder-select]")?.value || messages[state.notifications.length % messages.length];
   addNotification(message, state);
   saveState(state);
   renderState(state);
   showToast(self ? "A reminder is waiting in your inbox." : "A friendly reminder was sent to their buddy.");
+}
+
+function checkEat() {
+  const state = getState();
+  const mealCount = state.logs.filter((log) => log.type === "meal").length;
+  const message = mealCount ? `I checked in — ${state.kidName || "your kid"} has ${mealCount} meal${mealCount === 1 ? "" : "s"} logged today.` : `I’m checking in — has ${state.kidName || "your kid"} eaten something?`;
+  addNotification(message, state, mealCount ? "win" : "buddy");
+  saveState(state);
+  renderState(state);
+  showToast(mealCount ? "Their meal log is up to date." : "A gentle eat-something check-in was sent.");
+}
+
+function saveCircle() {
+  const state = getState();
+  const kidName = $("[data-profile-field='kidName']").value.trim();
+  const buddyName = $("[data-profile-field='buddyName']").value.trim();
+  if (!kidName || !buddyName) {
+    showToast("Give both your circle and buddy a name first.");
+    return;
+  }
+  state.kidName = kidName;
+  state.buddyName = buddyName;
+  saveState(state);
+  hydrateApp();
+  showToast(`${buddyName} is ready to hang out with ${kidName}.`);
 }
 
 function bindEvents() {
@@ -386,6 +445,18 @@ function bindEvents() {
     if (action === "edit-goals") openGoals();
     if (action === "send-reminder") sendReminder(false);
     if (action === "self-reminder") sendReminder(true);
+    if (action === "check-eat") checkEat();
+    if (action === "save-circle") saveCircle();
+    if (action === "add-custom-log") {
+      const input = $("[data-custom-log]");
+      const customLog = input?.value.trim();
+      if (customLog) {
+        logAction("activity", customLog);
+        input.value = "";
+      } else {
+        showToast("Give your custom log a name first.");
+      }
+    }
     if (action === "mark-all") { const state = getState(); state.notifications.forEach((item) => { item.done = true; }); saveState(state); renderState(state); showToast("All caught up!"); }
     const authTab = event.target.closest("[data-auth-tab]")?.dataset.authTab;
     if (authTab) switchAuthTab(authTab);
@@ -398,6 +469,13 @@ function bindEvents() {
     }
     const activity = event.target.closest("[data-activity]")?.dataset.activity;
     if (activity) logAction("activity", activity);
+    const historyRange = event.target.closest("[data-history-range]")?.dataset.historyRange;
+    if (historyRange) {
+      const state = getState();
+      state.historyRange = historyRange;
+      saveState(state);
+      renderHistory(state);
+    }
     const done = event.target.closest("[data-notification-done]")?.dataset.notificationDone;
     if (done) { const state = getState(); const item = state.notifications.find((notification) => String(notification.id) === String(done)); if (item && !item.done) { item.done = true; state.responses = (state.responses || 0) + 1; saveState(state); renderState(state); showToast("Nice response. Your buddy feels heard."); } }
     const toggle = event.target.closest(".menu-toggle");
